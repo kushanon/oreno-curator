@@ -1,4 +1,3 @@
-import urllib
 import re
 import requests
 import pickle
@@ -15,7 +14,7 @@ def parse(data, tag):
 def search_and_send(query, start, ids, api_url):
     while True:
         url = 'http://export.arxiv.org/api/query?search_query=' + query + '&start=' + str(start) + '&max_results=100&sortBy=lastUpdatedDate&sortOrder=descending'
-        data = urllib.urlopen(url).read()
+        data = requests.get(url).text
         entries = parse(data, "entry")
         print(len(entries))
         counter = 0
